@@ -1,0 +1,38 @@
+#!/bin/bash
+
+ifile1=$1
+sym=$2
+ofilehkl=${ifile1%.*}.hkl
+ofile1=${ifile1%.*}A.stream
+ofile2=${ifile1%.*}B.stream
+ofile1hkl=${ofile1%.*}.hkl
+ofile2hkl=${ofile2%.*}.hkl
+
+process_hkl -y $sym -i $ifile1 -o $ofilehkl
+
+./alternate-stream $ifile1 $ofile1 $ofile2
+
+process_hkl -y $sym -i $ofile1 -o $ofile1hkl
+process_hkl -y $sym -i $ofile2 -o $ofile2hkl
+
+check_hkl -y $sym \
+          -p ../pyp.pdb \
+          --nshells=20 --zero-negs \
+          --lowres=30 --highres=1.2 \
+          --shell-file=check_${ifile1%.*}.dat \
+          $ofilehkl
+
+
+compare_hkl -y $sym \
+            -p ../pyp.pdb \
+            --nshells=20  --fom=Rsplit \
+            --zero-negs --shell-file=rsplit_${ifile1%.*}.dat \
+            --lowres=30 --highres=1.2  \
+            $ofile1hkl $ofile2hkl
+
+compare_hkl -y $sym \
+            -p ../pyp.pdb \
+            --nshells=20  --fom=CCstar \
+            --zero-negs --shell-file=cc_${ifile1%.*}.dat \
+            --lowres=30 --highres=1.2  \
+            $ofile1hkl $ofile2hkl
