@@ -1,0 +1,39 @@
+#!/bin/bash
+
+#written by S.Basu..
+
+export H5DIR=$scratch/zatsepin/cheetah/hdf5
+
+while getopts "r:t:q" OPTION; do
+   case $OPTION in
+   r)
+      if [ $OPTARG -eq $OPTARG 2> /dev/null ]; then
+          RUNDIR=$(printf 'r%04d' $OPTARG)
+          RUNNUMBER=$(printf '%d' $OPTARG)
+      fi  
+      ;;  
+   t) TAG=$OPTARG;;
+   q) QUE="NO"
+      ;;  
+   esac 
+done
+shift `expr $OPTIND - 1`
+
+      SAVEDIR=$H5DIR/$RUNDIR
+      if [ $TAG ]; then
+            SAVEDIR=$SAVEDIR-$TAG
+      fi  
+    infile1=$SAVEDIR/$RUNDIR-class1-log.txt
+    infile2=$SAVEDIR/$RUNDIR-class3-log.txt
+    infile3=$SAVEDIR/$RUNDIR-class5-log.txt
+    awk -F, 'NR > 1 {print $1}' $infile1 > nz_hits/dark-$RUNNUMBER.txt
+    awk -F, 'NR > 1 {print $1}' $infile2 > nz_hits/laser1-$RUNNUMBER.txt
+    awk -F, 'NR > 1 {print $1}' $infile3 > nz_hits/laser2-$RUNNUMBER.txt
+    cat nz_hits/laser1-$RUNNUMBER.txt nz_hits/laser2-$RUNNUMBER.txt >> nz_hits/light-$RUNNUMBER.txt
+
+   # cat sort1.txt | awk '{if (($2 == 1) && ($3 == -1)) print $1;}' > $SAVEDIR/unk.txt
+   # cat sort1.txt | awk '{if (($2 != 0) && ($3 == 0)) print $1;}' > $SAVEDIR/dark.txt
+   # cat sort1.txt | awk '{if (($2 != 0) && ($3 == 1)) print $1;}' > $SAVEDIR/light.txt
+ 
+
+echo 'done';
