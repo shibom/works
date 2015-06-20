@@ -1,0 +1,45 @@
+#!/bin/bash
+
+#written by S.Basu..
+
+while getopts "r:t:q" OPTION; do
+   case $OPTION in
+   r)
+      if [ $OPTARG -eq $OPTARG 2> /dev/null ]; then
+          RUNDIR=$(printf 'r%04d' $OPTARG)
+          RUNNUMBER=$(printf '%d' $OPTARG)
+      fi  
+      ;;  
+   t) TAG=$OPTARG;;
+   q) QUE="NO"
+      ;;  
+   esac 
+done
+shift `expr $OPTIND - 1`
+
+      SAVEDIR=$H5DIR/$RUNDIR
+      if [ $TAG ]; then
+            SAVEDIR=$SAVEDIR-$TAG
+      fi  
+    infile=$SAVEDIR/frames.txt
+    awk -F, 'NR > 1 {print $1 $4 $17 $20 $21}' $infile | sort -k 2 > sort1.txt
+   # cat sort1.txt | awk '{if (($2 == 1) && ($3 == -1)) print $1;}' > $SAVEDIR/unk.txt
+    cat sort1.txt | awk '{if (($2 != 0) && ($3 == 0)) print $1;}' > 1us_hits/dark_$RUNNUMBER.txt
+    cat sort1.txt | awk '{if (($2 != 0) && ($3 == 1)) print $1;}' > 1us_hits/light_$RUNNUMBER.txt
+    cat sort1.txt | awk '{if (($2 != 0) && ($4 == 1)) print $1;}' > 1us_hits/ls1_$RUNNUMBER.txt
+    cat sort1.txt | awk '{if (($2 != 0) && ($5 == 1)) print $1;}' > 1us_hits/ls2_$RUNNUMBER.txt
+    #grep '.h5-1' sort2.txt > tmp.txt
+    #cat tmp.txt | sed 's/-1/ /g' > unk.txt 
+    #cat tmp_unk.txt | sed 's/1$//' > unk.txt
+    #rm tmp.txt
+    #grep '.h50' sort2.txt > tmp.txt
+    #cat tmp.txt | sed 's/0$//' > dark.txt
+    #cat tmp_dark.txt | sed 's/1$//'  > dark.txt
+    #rm tmp.txt
+    #grep '.h51' sort2.txt > tmp.txt
+    #cat tmp.txt | sed 's/1$//' > light.txt 
+    #cat tmp_light.txt | sed 's/1$//'  > light.txt
+    #rm tmp.txt 
+    #rm sort1.txt
+    #rm sort2.txt
+ echo 'done';
