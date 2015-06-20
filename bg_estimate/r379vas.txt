@@ -1,0 +1,14 @@
+/reg/d/psdm/cxi/cxii6315/scratch/shibom/cheetah/hdf5/r0379-bg1/r0379-radialstack-detector0-class1-stack6.h5
+/reg/d/psdm/cxi/cxii6315/scratch/shibom/cheetah/hdf5/r0379-bg1/r0379-radialstack-detector0-class1-stack5.h5
+/reg/d/psdm/cxi/cxii6315/scratch/shibom/cheetah/hdf5/r0379-bg1/r0379-radialstack-detector0-class1-stack7.h5
+/reg/d/psdm/cxi/cxii6315/scratch/shibom/cheetah/hdf5/r0379-bg1/r0379-radialstack-detector0-class1-stack9.h5
+/reg/d/psdm/cxi/cxii6315/scratch/shibom/cheetah/hdf5/r0379-bg1/r0379-radialstack-detector0-class1-stack3.h5
+/reg/d/psdm/cxi/cxii6315/scratch/shibom/cheetah/hdf5/r0379-bg1/r0379-radialstack-detector0-class1-stack0.h5
+/reg/d/psdm/cxi/cxii6315/scratch/shibom/cheetah/hdf5/r0379-bg1/r0379-radialstack-detector0-class1-stack2.h5
+/reg/d/psdm/cxi/cxii6315/scratch/shibom/cheetah/hdf5/r0379-bg1/r0379-radialstack-detector0-class1-stack8.h5
+/reg/d/psdm/cxi/cxii6315/scratch/shibom/cheetah/hdf5/r0379-bg1/r0379-radialstack-detector0-class1-stack4.h5
+/reg/d/psdm/cxi/cxii6315/scratch/shibom/cheetah/hdf5/r0379-bg1/r0379-radialstack-detector0-class1-stack12.h5
+/reg/d/psdm/cxi/cxii6315/scratch/shibom/cheetah/hdf5/r0379-bg1/r0379-radialstack-detector0-class1-stack1.h5
+/reg/d/psdm/cxi/cxii6315/scratch/shibom/cheetah/hdf5/r0379-bg1/r0379-radialstack-detector0-class1-stack11.h5
+/reg/d/psdm/cxi/cxii6315/scratch/shibom/cheetah/hdf5/r0379-bg1/r0379-radialstack-detector0-class1-stack13.h5
+/reg/d/psdm/cxi/cxii6315/scratch/shibom/cheetah/hdf5/r0379-bg1/r0379-radialstack-detector0-class1-stack10.h5
