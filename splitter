@@ -1,0 +1,50 @@
+#!/usr/bin/perl -w
+
+#My try out with Perl... Sbasu..
+
+use strict;
+
+open(FH, $ARGV[0]);
+open(OFH_ONE, "> ".$ARGV[1]);
+open(OFH_TWO, "> ".$ARGV[2]);
+open(OFH_3, "> ".$ARGV[3]);
+
+my $line;
+my $indexed = 0;
+my $filename;
+
+my $header = <FH>;
+printf(OFH_ONE $header);
+printf(OFH_TWO $header);
+
+while ( $line = <FH> ) {
+
+	if ( $line =~ /^-----\ Begin chunk\ -----$/ ) {
+      $indexed = 0
+   }
+   if ( $line =~ /^---\ Begin crystal$/ ) {
+   #if ( $line =~ /^indexed_by\ =\ none$/ ) {
+      $indexed = 1
+   }
+   if ( $line =~ /^Image\ filename: (.*)$/ ) {
+      $filename = $1
+   }
+   if ( $indexed == 1 ) {   
+      print(OFH_ONE $line);
+      print(OFH_3 $filename."\n");
+   } elsif ( $indexed == 0 ) {
+      print(OFH_TWO $line);
+   } else {
+      printf("Unhandled: '%s'\n", chomp($line));
+  }
+}
+
+#	if ( $alt == 0 ) {
+#		print(OFH_ONE $line);
+#	} elsif ( $alt == 1 ) {
+#		print(OFH_TWO $line);
+#	} else {
+#		printf("Unhandled: '%s'\n", chomp($line));
+#	}
+
+#}
